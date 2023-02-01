@@ -54,7 +54,10 @@
         &_list {
             display: grid;
             gap: 1.2rem;
-            
+            max-height: 39.1rem;
+            overflow-x: hidden;
+            padding-right: .8rem;
+
             &_item {
                 padding: 1rem;
                 display: flex;
