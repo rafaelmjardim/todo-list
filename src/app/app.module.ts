@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TodoListComponent } from './modules/todo-list/todo-list.component';
 
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    TodoListComponent
+    TodoListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import { TodoListComponent } from './todo-list.component';
 
 import { HttpClientModule } from "@angular/common/http";
 
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -12,7 +12,9 @@ import { HttpClientModule } from "@angular/common/http";
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class TodoListModule { }

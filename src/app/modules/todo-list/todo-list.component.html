@@ -1,7 +1,7 @@
 <div class="todo_list">
-    <form class="todo_list_inputs">
-        <input type="text" placeholder="Adicionar uma nova tarefa">
-        <button>Criar</button>
+    <form class="todo_list_inputs"[formGroup]="formTodo">
+        <input type="text" placeholder="Adicionar uma nova tarefa" formControlName='inputTxt'>
+        <button (click)="postTodoList()">Criar</button>
     </form>
 
     <div class="todo_list_main">

@@ -18,4 +18,10 @@ export class TodoListService {
       
     })
   }
+
+  postTodoList = (txtPost: string):Observable<Todo> => {
+    return this.http.post<Todo>(`${this.API_KEY}/todo`, {
+      txt: txtPost
+    })
+  }
 }
