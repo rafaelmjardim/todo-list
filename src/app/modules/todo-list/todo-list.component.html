@@ -10,11 +10,11 @@
             <span class="todo_list_main_header_done">Concluídas</span>
         </div>
 
-        <ul class="todo_list_main_list">
+        <ul class="todo_list_main_list" *ngFor="let todoItem of todoList">
             <li class="todo_list_main_list_item">
                 <input class="todo_list_main_list_item_checkbox" type="checkbox">
-                <span class="todo_list_main_list_item_txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Architecto autem officiis nesciunt repudiandae dicta necessitatibus.
+                <span class="todo_list_main_list_item_txt">
+                    {{todoItem.txt}}
                 </span>
                 <div class="todo_list_main_list_item_delete">
                     <img src="assets/icons/trash.png" alt="Delete icon">
