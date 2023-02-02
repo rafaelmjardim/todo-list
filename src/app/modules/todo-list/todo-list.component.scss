@@ -1,6 +1,7 @@
 .todo_list {
     display: grid;
     gap: 6.4rem;
+
     &_inputs {
         display: flex;
         gap: 0.8rem;
@@ -67,19 +68,11 @@
                 border: 1px solid #333333;
                 background-color: #262626;
                 box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.06);
-    
-                // &_checkbox {
-                //     outline: none;
-                //     border-radius: 50%;
-                //     width: 1.2rem;
-                //     height: 1.2rem;
-                //     vertical-align: middle;
-                // }
-                
 
                 &_txt {
                     max-width: 63.2rem;
                     font-size: 1.4rem;
+                    width: 100%;
                 }
 
                 &_delete {
@@ -91,6 +84,5 @@
                 }
             }
         }
-
     }
 }
