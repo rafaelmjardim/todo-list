@@ -14,7 +14,7 @@ export class TodoListComponent implements OnInit {
   todoList!: Todo;
 
   formTodo!: FormGroup;
-  inputTxt!: FormControl;
+  inputTxt!: string;
 
   constructor(
     private todo_list_service: TodoListService,
@@ -41,11 +41,14 @@ export class TodoListComponent implements OnInit {
 
   postTodoList = () => {
     //Adiciona o valor do input na variavel
-    const inputTxt = this.formTodo.controls['inputTxt'].value;
+    this.inputTxt = this.formTodo.controls['inputTxt'].value;
 
-    this.todo_list_service.postTodoList(inputTxt).subscribe( res => {
+    this.todo_list_service.postTodoList(this.inputTxt).subscribe( res => {
       // console.log('Log Post', res)
+
+      this.onGetTodolist();
     })
+
     this.onFormInit();
 
   }

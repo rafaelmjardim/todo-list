@@ -10,8 +10,8 @@
             <span class="todo_list_main_header_done">Concluídas</span>
         </div>
 
-        <ul class="todo_list_main_list" *ngFor="let todoItem of todoList">
-            <li class="todo_list_main_list_item">
+        <ul class="todo_list_main_list">
+            <li class="todo_list_main_list_item" *ngFor="let todoItem of todoList">
                 <input class="todo_list_main_list_item_checkbox" type="checkbox">
                 <span class="todo_list_main_list_item_txt">
                     {{todoItem.txt}}
