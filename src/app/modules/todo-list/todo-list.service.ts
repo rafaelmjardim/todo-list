@@ -24,4 +24,10 @@ export class TodoListService {
       txt: txtPost
     })
   }
+
+  deleteTodoList = (id: number): Observable<Todo> => {
+    return this.http.delete<Todo>(`${this.API_KEY}/todo/${id}`, {
+
+    })
+  }
 }

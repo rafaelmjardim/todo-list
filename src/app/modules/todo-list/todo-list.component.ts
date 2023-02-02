@@ -53,4 +53,10 @@ export class TodoListComponent implements OnInit {
 
   }
 
+  deleteTodoList = (id: number) => {
+    this.todo_list_service.deleteTodoList(id).subscribe(res => {
+      this.onGetTodolist();
+    })
+  }
+
 }

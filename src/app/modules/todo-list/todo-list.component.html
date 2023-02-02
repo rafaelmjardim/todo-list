@@ -16,7 +16,7 @@
                 <span class="todo_list_main_list_item_txt">
                     {{todoItem.txt}}
                 </span>
-                <div class="todo_list_main_list_item_delete">
+                <div class="todo_list_main_list_item_delete" (click)="deleteTodoList(todoItem.id)">
                     <img src="assets/icons/trash.png" alt="Delete icon">
                 </div>
             </li>

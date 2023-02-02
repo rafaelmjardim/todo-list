@@ -1,36 +1,12 @@
 {
   "todo": [
     {
-      "id": 1,
-      "txt": "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
-      "id": 1,
-      "txt": "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
-      "id": 1,
-      "txt": "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer."
-    },
-    {
       "txt": "Teste",
+      "id": 1
+    },
+    {
+      "txt": "aaaaaaaaaaaaaaaaaa",
       "id": 2
-    },
-    {
-      "txt": "teste",
-      "id": 3
-    },
-    {
-      "txt": "teste",
-      "id": 4
-    },
-    {
-      "txt": "Teste",
-      "id": 5
-    },
-    {
-      "txt": "aaa",
-      "id": 6
     }
   ],
   "comments": [
