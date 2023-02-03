@@ -17,7 +17,7 @@ export class TodoListComponent implements OnInit {
   formTodo!: FormGroup;
   inputTxt!: string;
 
-  todoItemChecked!: any;
+  todoItemChecked: boolean = false;
   todoCheckCount: number = 0;
   todoId!: number;
 
@@ -46,7 +46,7 @@ export class TodoListComponent implements OnInit {
     })
   }
 
-  postTodoList = () => {
+  submitTodoList = () => {
     console.log('Item', this.todoId)
     console.log('Editado com sucesso ID', this.todoId)
 
@@ -60,6 +60,7 @@ export class TodoListComponent implements OnInit {
         this.onFormInit();
         console.log('TXT', this.inputTxt)
       })
+      
     }else{
       //Post
 
@@ -74,7 +75,6 @@ export class TodoListComponent implements OnInit {
   
       this.onFormInit();
     }
-
   }
 
   deleteTodoList = (id: number) => {
@@ -85,14 +85,15 @@ export class TodoListComponent implements OnInit {
 
   putTodoList = (id:number) => {
     this.todoId = id;
+    //Setar o valor do testo no input
 
-    // this.todo_list_service.putTodoList(id, 'Editado', true).subscribe(res => {
-    //   console.log('Editado com sucesso, ID:', this.todoId)
-    // })
   }
 
-  changeTodoCheckbox = (event: any) => {
+  changeTodoCheckbox = (event: any, id: number, currentTxt: string) => {
     this.todoItemChecked = event.target.checked;
-  }
 
+    this.todo_list_service.putTodoList(id, currentTxt, this.todoItemChecked).subscribe(res => {
+      this.onGetTodolist();
+    })
+  }
 }

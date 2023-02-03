@@ -1,12 +1,12 @@
 {
   "todo": [
     {
-      "txt": "editado checkado",
-      "checked": true,
+      "txt": "Primeira tarefa",
+      "checked": false,
       "id": 1
     },
     {
-      "txt": "editado não checkado",
+      "txt": "Testando edição de tarefas",
       "checked": false,
       "id": 2
     }
