@@ -1,8 +1,14 @@
 {
   "todo": [
     {
-      "txt": "teste",
+      "txt": "Editado",
+      "checked": true,
       "id": 1
+    },
+    {
+      "txt": "teste",
+      "checked": false,
+      "id": 2
     }
   ],
   "comments": [

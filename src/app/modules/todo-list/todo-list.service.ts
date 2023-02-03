@@ -21,13 +21,21 @@ export class TodoListService {
 
   postTodoList = (txtPost: string):Observable<Todo> => {
     return this.http.post<Todo>(`${this.API_KEY}/todo`, {
-      txt: txtPost
+      txt: txtPost,
+      checked: false
     })
   }
 
   deleteTodoList = (id: number): Observable<Todo> => {
     return this.http.delete<Todo>(`${this.API_KEY}/todo/${id}`, {
 
+    })
+  }
+
+  putTodoList = (id: number, txtPost: string, checkedChange:boolean): Observable<Todo> => {
+    return this.http.put<Todo>(`${this.API_KEY}/todo/${id}`, {
+      txt: txtPost,
+      checked: checkedChange
     })
   }
 }

@@ -17,6 +17,9 @@ export class TodoListComponent implements OnInit {
   formTodo!: FormGroup;
   inputTxt!: string;
 
+  todoItemChecked!: any;
+  todoCheckCount: number = 0;
+
   constructor(
     private todo_list_service: TodoListService,
     private form_builder: FormBuilder
@@ -38,6 +41,7 @@ export class TodoListComponent implements OnInit {
     this.todo_list_service.getTodoList().subscribe(res => {
       this.todoList = res;
       this.todoListCount = res.length;
+      this.todoCheckCount = this.todoList.filter(i => i.checked).length
     })
   }
 
@@ -59,6 +63,18 @@ export class TodoListComponent implements OnInit {
     this.todo_list_service.deleteTodoList(id).subscribe(res => {
       this.onGetTodolist();
     })
+  }
+
+  putTodoList = () => {
+    this.todo_list_service.putTodoList(1, 'Editado', true).subscribe(res => {
+      console.log('Editado com sucesso')
+    })
+  }
+
+  changeTodoCheckbox = (event: any) => {
+    
+    
+    // console.log(this.todoCheckCount)
   }
 
 }

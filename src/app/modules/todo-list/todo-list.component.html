@@ -6,18 +6,30 @@
 
     <div class="todo_list_main">
         <div class="todo_list_main_header">
-            <span class="todo_list_main_header_tasks">Tarefas criadas</span>
-            <span class="todo_list_main_header_done">Concluídas</span>
+            <div class="todo_list_main_header_tasks">
+                <span class="todo_list_main_header_tasks_txt">Tarefas criadas</span>
+                <div class="todo_list_main_header_tasks_count">{{todoListCount}}</div>
+            </div>
+            <div class="todo_list_main_header_done">
+                <span class="todo_list_main_header_done_txt">Concluídas</span>
+                <div class="todo_list_main_header_done_count">{{todoCheckCount}} de {{todoListCount}}</div>
+            </div>
         </div>
 
         <ul class="todo_list_main_list" *ngIf="todoListCount > 0; else empty">
             <li class="todo_list_main_list_item" *ngFor="let todoItem of todoList">
-                <input class="todo_list_main_list_item_checkbox" type="checkbox">
+                <input class="todo_list_main_list_item_checkbox" type="checkbox" (change)="changeTodoCheckbox(todoItem)">
                 <span class="todo_list_main_list_item_txt">
                     {{todoItem.txt}}
                 </span>
-                <div class="todo_list_main_list_item_delete" (click)="deleteTodoList(todoItem.id)">
-                    <img src="assets/icons/trash.png" alt="Delete icon">
+                <div class="todo_list_main_list_item_actions">
+                    <div class="todo_list_main_list_item_actions_edit" (click)="putTodoList()">
+                        <img src="assets/icons/edit.png" alt="Delete icon">
+                    </div>
+                    
+                    <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(todoItem.id)">
+                        <img src="assets/icons/trash.png" alt="Delete icon">
+                    </div>
                 </div>
             </li>
         </ul>
