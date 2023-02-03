@@ -1,7 +1,7 @@
 <div class="todo_list">
     <form class="todo_list_inputs"[formGroup]="formTodo">
         <input type="text" placeholder="Adicionar uma nova tarefa" formControlName='inputTxt'>
-        <button (click)="submitTodoList()">Criar</button>
+        <button (click)="submitTodoList()">{{!todoId ? 'Criar' : 'Editar'}}</button>
     </form>
 
     <div class="todo_list_main">
@@ -23,8 +23,8 @@
                     {{todoItem.txt}}
                 </span>
                 <div class="todo_list_main_list_item_actions">
-                    <div class="todo_list_main_list_item_actions_edit" (click)="putTodoList(todoItem.id)">
-                        <img src="assets/icons/edit.png" alt="Delete icon">
+                    <div class="todo_list_main_list_item_actions_edit" (click)="putTodoList(todoItem.id, todoItem.txt)">
+                        <img src="assets/icons/edit.png" alt="Edit icon">
                     </div>
                     
                     <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(todoItem.id)">

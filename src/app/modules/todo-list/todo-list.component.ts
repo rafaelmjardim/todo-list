@@ -72,7 +72,7 @@ export class TodoListComponent implements OnInit {
   
         this.onGetTodolist();
       })
-  
+
       this.onFormInit();
     }
   }
@@ -83,10 +83,11 @@ export class TodoListComponent implements OnInit {
     })
   }
 
-  putTodoList = (id:number) => {
+  putTodoList = (id:number, txt?: string) => {
     this.todoId = id;
+    
     //Setar o valor do testo no input
-
+    this.formTodo.controls['inputTxt'].setValue(txt);
   }
 
   changeTodoCheckbox = (event: any, id: number, currentTxt: string) => {

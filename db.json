@@ -6,9 +6,24 @@
       "id": 1
     },
     {
-      "txt": "Testando edição de tarefas",
+      "txt": "Editar",
       "checked": false,
-      "id": 2
+      "id": 3
+    },
+    {
+      "txt": "Criar novo",
+      "checked": false,
+      "id": 4
+    },
+    {
+      "txt": "Editado",
+      "checked": false,
+      "id": 5
+    },
+    {
+      "txt": "teste",
+      "checked": false,
+      "id": 6
     }
   ],
   "comments": [
