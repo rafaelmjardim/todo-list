@@ -1,24 +1,14 @@
 {
   "todo": [
     {
-      "txt": "Editado",
+      "txt": "editado checkado",
       "checked": true,
       "id": 1
     },
     {
-      "txt": "teste",
+      "txt": "editado não checkado",
       "checked": false,
       "id": 2
-    },
-    {
-      "txt": "teste",
-      "checked": false,
-      "id": 3
-    },
-    {
-      "txt": "teste",
-      "checked": false,
-      "id": 4
     }
   ],
   "comments": [

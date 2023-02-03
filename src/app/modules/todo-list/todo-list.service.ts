@@ -10,6 +10,7 @@ import { Todo } from './todo-list';
 export class TodoListService {
 
   API_KEY = environment.API_KEY;
+  
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +33,7 @@ export class TodoListService {
     })
   }
 
-  putTodoList = (id: number, txtPost: string, checkedChange:boolean): Observable<Todo> => {
+  putTodoList = (id: number, txtPost?: string, checkedChange?:boolean): Observable<Todo> => {
     return this.http.put<Todo>(`${this.API_KEY}/todo/${id}`, {
       txt: txtPost,
       checked: checkedChange

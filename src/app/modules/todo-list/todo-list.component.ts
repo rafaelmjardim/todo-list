@@ -19,6 +19,7 @@ export class TodoListComponent implements OnInit {
 
   todoItemChecked!: any;
   todoCheckCount: number = 0;
+  todoId!: number;
 
   constructor(
     private todo_list_service: TodoListService,
@@ -46,16 +47,33 @@ export class TodoListComponent implements OnInit {
   }
 
   postTodoList = () => {
-    //Adiciona o valor do input na variavel
-    this.inputTxt = this.formTodo.controls['inputTxt'].value;
+    console.log('Item', this.todoId)
+    console.log('Editado com sucesso ID', this.todoId)
 
-    this.todo_list_service.postTodoList(this.inputTxt).subscribe( res => {
-      // console.log('Log Post', res)
+    if(this.todoId){
+      //Update
+      this.inputTxt = this.formTodo.controls['inputTxt'].value;
+      
+      this.todo_list_service.putTodoList(this.todoId, this.inputTxt, this.todoItemChecked).subscribe(res =>{
+        console.log('Editado com sucesso ID', this.todoId)
+        this.onGetTodolist();
+        this.onFormInit();
+        console.log('TXT', this.inputTxt)
+      })
+    }else{
+      //Post
 
-      this.onGetTodolist();
-    })
-
-    this.onFormInit();
+      //Adiciona o valor do input na variavel
+      this.inputTxt = this.formTodo.controls['inputTxt'].value;
+  
+      this.todo_list_service.postTodoList(this.inputTxt).subscribe( res => {
+        // console.log('Log Post', res)
+  
+        this.onGetTodolist();
+      })
+  
+      this.onFormInit();
+    }
 
   }
 
@@ -65,16 +83,16 @@ export class TodoListComponent implements OnInit {
     })
   }
 
-  putTodoList = () => {
-    this.todo_list_service.putTodoList(1, 'Editado', true).subscribe(res => {
-      console.log('Editado com sucesso')
-    })
+  putTodoList = (id:number) => {
+    this.todoId = id;
+
+    // this.todo_list_service.putTodoList(id, 'Editado', true).subscribe(res => {
+    //   console.log('Editado com sucesso, ID:', this.todoId)
+    // })
   }
 
   changeTodoCheckbox = (event: any) => {
-    
-    
-    // console.log(this.todoCheckCount)
+    this.todoItemChecked = event.target.checked;
   }
 
 }
