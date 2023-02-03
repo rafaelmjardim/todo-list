@@ -10,7 +10,7 @@
             <span class="todo_list_main_header_done">Concluídas</span>
         </div>
 
-        <ul class="todo_list_main_list">
+        <ul class="todo_list_main_list" *ngIf="todoListCount > 0; else empty">
             <li class="todo_list_main_list_item" *ngFor="let todoItem of todoList">
                 <input class="todo_list_main_list_item_checkbox" type="checkbox">
                 <span class="todo_list_main_list_item_txt">
@@ -23,3 +23,11 @@
         </ul>
     </div>
 </div>
+
+<ng-template #empty>
+    <div class="empty">
+        <img class="empty_img" src="assets/icons/Clipboard.png" alt="Icon clipboard">
+        <span class="empty_title">Você ainda não tem tarefas cadastradas</span>
+        <span class="empty_subtitle">Crie tarefas e organize seus itens a fazer</span>
+    </div>
+</ng-template>

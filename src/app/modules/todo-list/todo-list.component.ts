@@ -12,6 +12,7 @@ import { FormGroup , FormBuilder, FormControl } from "@angular/forms";
 export class TodoListComponent implements OnInit {
 
   todoList!: Todo;
+  todoListCount!: number;
 
   formTodo!: FormGroup;
   inputTxt!: string;
@@ -36,6 +37,7 @@ export class TodoListComponent implements OnInit {
   onGetTodolist = () => {
     this.todo_list_service.getTodoList().subscribe(res => {
       this.todoList = res;
+      this.todoListCount = res.length;
     })
   }
 

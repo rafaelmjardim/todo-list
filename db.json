@@ -1,12 +1,8 @@
 {
   "todo": [
     {
-      "txt": "Teste",
+      "txt": "teste",
       "id": 1
-    },
-    {
-      "txt": "aaaaaaaaaaaaaaaaaa",
-      "id": 2
     }
   ],
   "comments": [
