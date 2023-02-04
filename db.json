@@ -2,28 +2,8 @@
   "todo": [
     {
       "txt": "teste",
-      "checked": true,
+      "checked": false,
       "id": 1
-    },
-    {
-      "txt": "testeee",
-      "checked": true,
-      "id": 2
-    },
-    {
-      "txt": "aaaa",
-      "checked": false,
-      "id": 3
-    },
-    {
-      "txt": "bbb",
-      "checked": true,
-      "id": 4
-    },
-    {
-      "txt": "ee",
-      "checked": false,
-      "id": 5
     }
   ],
   "comments": [

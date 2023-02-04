@@ -11,7 +11,7 @@ import { FormGroup , FormBuilder, FormControl, RequiredValidator } from "@angula
 })
 export class TodoListComponent implements OnInit {
 
-  todoList!: any;
+  todoList!: Todo;
   todoListCount!: number;
 
   formTodo!: FormGroup;
@@ -42,8 +42,8 @@ export class TodoListComponent implements OnInit {
   onGetTodolist = () => {
     this.todo_list_service.getTodoList().subscribe(res => {
       this.todoList = res;
-      // this.todoListCount = res.length;
-      // this.todoCheckCount = this.todoList.filter(i => i.checked).length
+      this.todoListCount = res.length;
+      this.todoCheckCount = this.todoList.filter(i => i.checked).length
 
     
       console.log('get', res)

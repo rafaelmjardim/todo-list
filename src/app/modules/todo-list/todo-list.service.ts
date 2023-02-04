@@ -14,12 +14,12 @@ export class TodoListService {
 
   constructor(private http: HttpClient) { }
 
-  getTodoList = () => {
-    return this.http.get<{[id: string]: Todo}>(`${this.API_KEY}/todo.json`)
+  getTodoList = ():Observable<Todo> => {
+    return this.http.get<Todo>(`${this.API_KEY}/todo`)
   }
 
   postTodoList = (txtPost: string):Observable<Todo> => {
-    return this.http.post<Todo>(`${this.API_KEY}/todo.json`, {
+    return this.http.post<Todo>(`${this.API_KEY}/todo`, {
       txt: txtPost,
       checked: false
     })
