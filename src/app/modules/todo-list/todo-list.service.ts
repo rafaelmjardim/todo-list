@@ -14,8 +14,8 @@ export class TodoListService {
 
   constructor(private http: HttpClient) { }
 
-  getTodoList = ():Observable<Todo> => {
-    return this.http.get<Todo>(`${this.API_KEY}/todo.json`)
+  getTodoList = () => {
+    return this.http.get<any>(`${this.API_KEY}/todo.json`)
   }
 
   postTodoList = (txtPost: string):Observable<Todo> => {
