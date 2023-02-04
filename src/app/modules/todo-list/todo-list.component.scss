@@ -159,9 +159,15 @@
 
 .requiredError   {
     border: .2rem solid rgb(184, 40, 40);
+    transition: 0.2s;
 
     &:focus {
         outline:none;
         border: .2rem solid rgb(184, 40, 40);
     }
+}
+.checked {
+    color: #666666;
+    font-style: italic;
+    text-decoration: line-through;
 }

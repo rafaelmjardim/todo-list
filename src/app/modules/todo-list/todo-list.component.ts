@@ -37,7 +37,6 @@ export class TodoListComponent implements OnInit {
     this.formTodo = this.form_builder.group({
       inputTxt: ['']
     })
-    
   }
 
   onGetTodolist = () => {
@@ -66,7 +65,7 @@ export class TodoListComponent implements OnInit {
         console.log('Editado com sucesso ID', this.todoId)
         this.onGetTodolist();
         this.onFormInit();
-        
+
         //reseta o id para retornar o insert
         this.todoId = 0
       })

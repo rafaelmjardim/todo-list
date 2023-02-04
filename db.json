@@ -1,39 +1,29 @@
 {
   "todo": [
     {
-      "txt": "Inserindo editado",
+      "txt": "teste",
       "checked": true,
       "id": 1
     },
     {
-      "txt": "teste",
+      "txt": "testeee",
       "checked": true,
       "id": 2
     },
     {
-      "txt": "nova aaaa",
-      "checked": true,
+      "txt": "aaaa",
+      "checked": false,
       "id": 3
     },
     {
-      "txt": "teste",
+      "txt": "bbb",
       "checked": true,
       "id": 4
     },
     {
-      "txt": "aaa",
-      "checked": true,
-      "id": 5
-    },
-    {
-      "txt": "teste",
-      "checked": true,
-      "id": 6
-    },
-    {
-      "txt": "teste",
+      "txt": "ee",
       "checked": false,
-      "id": 7
+      "id": 5
     }
   ],
   "comments": [
