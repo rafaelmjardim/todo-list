@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
 import { Todo } from './todo-list';
 
-import { FormGroup , FormBuilder, FormControl } from "@angular/forms";
+import { FormGroup , FormBuilder, FormControl, RequiredValidator } from "@angular/forms";
 
 @Component({
   selector: 'app-todo-list',
@@ -20,6 +20,8 @@ export class TodoListComponent implements OnInit {
   todoItemChecked: boolean = false;
   todoCheckCount: number = 0;
   todoId!: number;
+
+  requiredError: boolean = false;
 
   constructor(
     private todo_list_service: TodoListService,
@@ -47,8 +49,14 @@ export class TodoListComponent implements OnInit {
   }
 
   submitTodoList = () => {
-    console.log('Item', this.todoId)
-    console.log('Editado com sucesso ID', this.todoId)
+    
+    if(!this.formTodo.controls['inputTxt'].value.length){
+      this.requiredError = true;
+      console.log('error status', this.requiredError)
+      return
+    }else {
+      this.requiredError = false;
+    }
 
     if(this.todoId){
       //Update
@@ -58,7 +66,9 @@ export class TodoListComponent implements OnInit {
         console.log('Editado com sucesso ID', this.todoId)
         this.onGetTodolist();
         this.onFormInit();
-        console.log('TXT', this.inputTxt)
+        
+        //reseta o id para retornar o insert
+        this.todoId = 0
       })
       
     }else{

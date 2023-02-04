@@ -1,28 +1,33 @@
 {
   "todo": [
     {
-      "txt": "Primeira tarefa",
-      "checked": false,
+      "txt": "Inserindo editado",
+      "checked": true,
       "id": 1
     },
     {
-      "txt": "Editar",
-      "checked": false,
+      "txt": "teste",
+      "checked": true,
+      "id": 2
+    },
+    {
+      "txt": "nova aaaa",
+      "checked": true,
       "id": 3
     },
     {
-      "txt": "Criar novo",
-      "checked": false,
+      "txt": "teste",
+      "checked": true,
       "id": 4
     },
     {
-      "txt": "Editado",
-      "checked": false,
+      "txt": "aaa",
+      "checked": true,
       "id": 5
     },
     {
       "txt": "teste",
-      "checked": false,
+      "checked": true,
       "id": 6
     }
   ],

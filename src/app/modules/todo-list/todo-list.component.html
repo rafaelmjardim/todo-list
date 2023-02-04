@@ -1,6 +1,6 @@
 <div class="todo_list">
     <form class="todo_list_inputs"[formGroup]="formTodo">
-        <input type="text" placeholder="Adicionar uma nova tarefa" formControlName='inputTxt'>
+        <input  class="todo_list_inputs_input" type="text" placeholder="Adicionar uma nova tarefa" [ngClass]="{'requiredError': requiredError}" formControlName='inputTxt'>
         <button (click)="submitTodoList()">{{!todoId ? 'Criar' : 'Editar'}}</button>
     </form>
 

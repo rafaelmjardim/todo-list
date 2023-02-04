@@ -6,7 +6,7 @@
         display: flex;
         gap: 0.8rem;
 
-        input {
+        &_input {
             width: 63.8rem;
             height: 5.4rem;
             padding: 1.6rem;
@@ -131,5 +131,14 @@
     &_subtitle {
         color: #808080;
         margin-top: .4rem;
+    }
+}
+
+.requiredError   {
+    border: .2rem solid rgb(184, 40, 40);
+    
+    &:focus {
+        outline:none;
+        border: .2rem solid rgb(184, 40, 40);
     }
 }
