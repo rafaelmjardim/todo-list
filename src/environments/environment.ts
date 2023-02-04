@@ -4,5 +4,6 @@
 
 export const environment = {
   production: false,
-  API_KEY: 'http://localhost:3000'
+  // API_KEY: 'http://localhost:3000'
+  API_KEY: 'https://todo-list-939f4-default-rtdb.firebaseio.com'
 };

@@ -1,5 +1,5 @@
-export type Todo = [{
-    id: number
+export type Todo = {
+    id?: number
     txt: string
     checked: boolean
-}]
+}
