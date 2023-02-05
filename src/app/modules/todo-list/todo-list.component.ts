@@ -23,8 +23,6 @@ export class TodoListComponent implements OnInit {
 
   requiredError: boolean = false;
 
-  item!: any;
-
   constructor(
     private todo_list_service: TodoListService,
     private form_builder: FormBuilder
@@ -33,29 +31,6 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.onGetTodolist();
     this.onFormInit();
-
-    const obj = {
-      id1: {
-        title: 'Titulo do obj',
-        description: 'Descrição do objeto'
-      },
-      id2: {
-        title: 'Titulo do obj',
-        description: 'Descrição do objeto'
-      },
-      id3: {
-        title: 'Titulo do obj',
-        description: 'Descrição do objeto'
-      },
-    }
-
-    const objKeys = Object.keys(obj)
-
-    for (let i = 1; i < objKeys.length; i++) {
-      const element = objKeys[i];
-      console.log('element', element)
-    }
-    console.log('Obj', objKeys)
   }
 
   onFormInit = () => {
@@ -66,15 +41,14 @@ export class TodoListComponent implements OnInit {
 
   onGetTodolist = () => {
     this.todo_list_service.getTodoList().subscribe(res => {
-      // this.todoList = res;
-      this.todoListCount = res.length;
-      // this.todoCheckCount = this.todoList.filter(i => i.checked).length
-
       this.todoList = Object.keys(res).map(key => {
         return  res[key]
       })
-          
-      console.log('get',  this.todoList);
+
+      this.todoListCount = this.todoList.length;
+      console.log('count', this.todoListCount);
+      
+      // this.todoCheckCount = this.todoList.filter(i => i.checked).length
     })
   }
 
