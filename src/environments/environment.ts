@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   // API_KEY: 'http://localhost:3000'
   API_KEY: 'https://todo-list-939f4-default-rtdb.firebaseio.com'
 };
