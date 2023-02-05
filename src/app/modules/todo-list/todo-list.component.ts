@@ -12,7 +12,7 @@ import { FormGroup , FormBuilder, FormControl, RequiredValidator } from "@angula
 export class TodoListComponent implements OnInit {
 
   todoList!: any;
-  todoListCount!: number;
+  todoListCount: number = 0;
 
   formTodo!: FormGroup;
   inputTxt!: string;
@@ -41,13 +41,13 @@ export class TodoListComponent implements OnInit {
 
   onGetTodolist = () => {
     this.todo_list_service.getTodoList().subscribe(res => {
-      this.todoList = Object.keys(res).map(key => {
-        return  res[key]
-      })
-
-      this.todoListCount = this.todoList.length;
-      console.log('count', this.todoListCount);
-      
+      if(res) {
+        this.todoList = Object.keys(res).map(key => {
+          return  res[key]
+        })
+  
+        this.todoListCount = this.todoList.length;
+      }
       // this.todoCheckCount = this.todoList.filter(i => i.checked).length
     })
   }
