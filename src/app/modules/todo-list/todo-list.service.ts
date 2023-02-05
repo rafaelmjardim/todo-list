@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Todo } from './todo-list';
+import { Todo, TodoTest } from './todo-list';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class TodoListService {
   constructor(private http: HttpClient) { }
 
   getTodoList = () => {
-    return this.http.get<any>(`${this.API_KEY}/todo.json`)
+    return this.http.get<any>(`${this.API_KEY}/todo/.json`)
   }
 
   postTodoList = (txtPost: string):Observable<Todo> => {

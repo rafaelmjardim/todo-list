@@ -3,3 +3,10 @@ export type Todo = [{
     txt: string
     checked: boolean
 }]
+
+export type TodoTest = [{
+    id: {
+        txt: string
+        checked: boolean
+    }
+}]
