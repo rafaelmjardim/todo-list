@@ -19,13 +19,11 @@ export class TodoListComponent implements OnInit {
 
   todoItemChecked: boolean = false;
   todoCheckCount: number = 0;
-  todoId!: number;
+  todoId!: string;
 
   requiredError: boolean = false;
-
-  todoListId!: any;
-
-  elementId!: any;
+  
+  arrayDeTodos: any[] = [];
 
   constructor(
     private todo_list_service: TodoListService,
@@ -35,24 +33,6 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.onGetTodolist();
     this.onFormInit();
-
-    this.testGetId();
-
-    
-  }
-  
-  testGetId = () => {
-    this.todo_list_service.getTodoList().subscribe(res => {
-      this.todoListId = Object.keys(res).forEach(id => {
-        this.elementId = id
-        console.log('Element ID', this.elementId)
-      })
-     
-      this.todoListId = Object.keys(res).map(key => {
-        return console.log('Key', res[key])
-      })
-
-    })
     
   }
 
@@ -62,18 +42,27 @@ export class TodoListComponent implements OnInit {
     })
   }
 
-  onGetTodolist = () => {
-    this.todo_list_service.getTodoList().subscribe(res => {
-      if(res) {
-        this.todoList = Object.keys(res).map(key => {
-          return  res[key]
-        })
-  
-        this.todoListCount = this.todoList.length;
+onGetTodolist = () => {
+  this.todo_list_service.getTodoList().subscribe(res => {
+    const getTodoListResponse = res;
+
+    Object.keys(getTodoListResponse).forEach((object) => {
+    const todoID = object; // O ID DO OBJECT É O PROPRIO OBJECT;
+    const todoObjeto = res[object]; // AQUI É AS PROPRIEDADES DO OBJECT;
+
+    if (todoID && todoObjeto) {
+      const todoItem = {
+        id: todoID,
+        checked: todoObjeto.checked,
+        txt: todoObjeto.txt
       }
-      // this.todoCheckCount = this.todoList.filter(i => i.checked).length
+
+      this.arrayDeTodos.push(todoItem);
+      console.log('array de todos: ', this.arrayDeTodos);
+      }
     })
-  }
+  })
+}
 
   submitTodoList = () => {
     
@@ -94,8 +83,6 @@ export class TodoListComponent implements OnInit {
         this.onGetTodolist();
         this.onFormInit();
 
-        //reseta o id para retornar o insert
-        this.todoId = 0
       })
       
     }else{
@@ -114,20 +101,20 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  deleteTodoList = (id: number) => {
+  deleteTodoList = (id: string) => {
     this.todo_list_service.deleteTodoList(id).subscribe(res => {
       this.onGetTodolist();
     })
   }
 
-  putTodoList = (id:number, txt?: string) => {
+  putTodoList = (id:string, txt?: string) => {
     this.todoId = id;
     
     //Setar o valor do testo no input
     this.formTodo.controls['inputTxt'].setValue(txt);
   }
 
-  changeTodoCheckbox = (event: any, id: number, currentTxt: string) => {
+  changeTodoCheckbox = (event: any, id: string, currentTxt: string) => {
     this.todoItemChecked = event.target.checked;
 
     this.todo_list_service.putTodoList(id, currentTxt, this.todoItemChecked).subscribe(res => {

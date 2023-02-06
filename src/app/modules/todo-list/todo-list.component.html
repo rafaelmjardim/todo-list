@@ -16,8 +16,9 @@
             </div>
         </div>
 
-        <ul class="todo_list_main_list" *ngIf="todoListCount > 0; else empty">
-            <li class="todo_list_main_list_item" *ngFor="let todoItem of todoList">
+        <!-- *ngIf="todoListCount > 0; else empty" -->
+        <ul class="todo_list_main_list">
+            <li class="todo_list_main_list_item" *ngFor="let todoItem of arrayDeTodos">
                 <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, todoItem.id, todoItem.txt)">
                 <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem.checked}">
                     {{todoItem.txt}}
@@ -27,7 +28,7 @@
                         <img src="assets/icons/edit.png" alt="Edit icon">
                     </div>
                     
-                    <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(elementId)">
+                    <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(todoItem.id)">
                         <img src="assets/icons/trash.png" alt="Delete icon">
                     </div>
                 </div>

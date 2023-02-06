@@ -25,14 +25,14 @@ export class TodoListService {
     })
   }
 
-  deleteTodoList = (id: number): Observable<Todo> => {
-    return this.http.delete<Todo>(`${this.API_KEY}/todo/${id}`, {
+  deleteTodoList = (id: string) => {
+    return this.http.delete<any>(`${this.API_KEY}/todo/${id}.json`, {
 
     })
   }
 
-  putTodoList = (id: number, txtPost?: string, checkedChange?:boolean): Observable<Todo> => {
-    return this.http.put<Todo>(`${this.API_KEY}/todo/${id}`, {
+  putTodoList = (id: string, txtPost?: string, checkedChange?:boolean) => {
+    return this.http.put<any>(`${this.API_KEY}/todo/${id}.json`, {
       txt: txtPost,
       checked: checkedChange
     })
