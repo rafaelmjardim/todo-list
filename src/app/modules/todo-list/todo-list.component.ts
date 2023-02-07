@@ -44,23 +44,10 @@ export class TodoListComponent implements OnInit {
 
 onGetTodolist = () => {
   this.todo_list_service.getTodoList().subscribe(res => {
-    const getTodoListResponse = res;
-
-    Object.keys(getTodoListResponse).forEach((object) => {
-    const todoID = object; // O ID DO OBJECT É O PROPRIO OBJECT;
-    const todoObjeto = res[object]; // AQUI É AS PROPRIEDADES DO OBJECT;
-
-    if (todoID && todoObjeto) {
-      const todoItem = {
-        id: todoID,
-        checked: todoObjeto.checked,
-        txt: todoObjeto.txt
-      }
-
-      this.arrayDeTodos.push(todoItem);
-      console.log('array de todos: ', this.arrayDeTodos);
-      }
+    this.todoList = Object.entries(res).map(key => {
+      return key
     })
+
   })
 }
 

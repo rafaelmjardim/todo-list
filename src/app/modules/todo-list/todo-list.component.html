@@ -17,21 +17,22 @@
         </div>
 
         <!-- *ngIf="todoListCount > 0; else empty" -->
+        <div></div>
         <ul class="todo_list_main_list">
-            <li class="todo_list_main_list_item" *ngFor="let todoItem of arrayDeTodos">
-                <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, todoItem.id, todoItem.txt)">
-                <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem.checked}">
-                    {{todoItem.txt}}
-                </span>
-                <div class="todo_list_main_list_item_actions">
-                    <div class="todo_list_main_list_item_actions_edit" (click)="putTodoList(todoItem.id, todoItem.txt)">
-                        <img src="assets/icons/edit.png" alt="Edit icon">
-                    </div>
+            <li class="todo_list_main_list_item"  *ngFor="let todoItem of todoList">
+                    <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, todoItem.id, todoItem.txt)">
+                    <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem[1].checked}">
+                        {{todoItem[1].txt}}
+                    </span>
+                    <div class="todo_list_main_list_item_actions">
+                        <div class="todo_list_main_list_item_actions_edit" (click)="putTodoList(todoItem[0], todoItem[1].txt)">
+                            <img src="assets/icons/edit.png" alt="Edit icon">
+                        </div>
                     
-                    <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(todoItem.id)">
-                        <img src="assets/icons/trash.png" alt="Delete icon">
+                        <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(todoItem[0])">
+                            <img src="assets/icons/trash.png" alt="Delete icon">
+                        </div>
                     </div>
-                </div>
             </li>
         </ul>
     </div>
