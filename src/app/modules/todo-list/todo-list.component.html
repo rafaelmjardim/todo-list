@@ -20,7 +20,7 @@
         <div></div>
         <ul class="todo_list_main_list">
             <li class="todo_list_main_list_item"  *ngFor="let todoItem of todoList">
-                    <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, todoItem.id, todoItem.txt)">
+                    <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, todoItem[0], todoItem[1].txt)">
                     <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem[1].checked}">
                         {{todoItem[1].txt}}
                     </span>
