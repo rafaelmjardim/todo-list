@@ -22,8 +22,6 @@ export class TodoListComponent implements OnInit {
   todoId!: string;
 
   requiredError: boolean = false;
-  
-  arrayDeTodos: any[] = [];
 
   constructor(
     private todo_list_service: TodoListService,
@@ -42,14 +40,16 @@ export class TodoListComponent implements OnInit {
     })
   }
 
-onGetTodolist = () => {
-  this.todo_list_service.getTodoList().subscribe(res => {
-    this.todoList = Object.entries(res).map(key => {
-      return key
-    })
+  onGetTodolist = () => {
+    this.todo_list_service.getTodoList().subscribe(res => {
+      this.todoList = Object.entries(res).map(key => {
+        return key
+      })
 
-  })
-}
+      this.todoListCount = this.todoList.length
+
+    })
+  }
 
   submitTodoList = () => {
     
