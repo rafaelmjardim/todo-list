@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
-import { Todo, TodoTest } from './todo-list';
-
-import { FormGroup , FormBuilder, FormControl, RequiredValidator } from "@angular/forms";
+import { FormGroup , FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-todo-list',
@@ -41,13 +39,17 @@ export class TodoListComponent implements OnInit {
   }
 
   onGetTodolist = () => {
+    
     this.todo_list_service.getTodoList().subscribe(res => {
-      this.todoList = Object.entries(res).map(key => {
-        return key
-      })
-
-      this.todoListCount = this.todoList.length
-
+      if(res){
+        this.todoList = Object.entries(res).map(key => {
+          return key
+        })
+  
+        this.todoListCount = this.todoList.length
+      }
+      
+      console.log(this.todoListCount)
     })
   }
 
@@ -74,16 +76,11 @@ export class TodoListComponent implements OnInit {
       
     }else{
       //Post
-
-      //Adiciona o valor do input na variavel
       this.inputTxt = this.formTodo.controls['inputTxt'].value;
   
-      this.todo_list_service.postTodoList(this.inputTxt).subscribe( res => {
-        // console.log('Log Post', res)
-  
+      this.todo_list_service.postTodoList(this.inputTxt).subscribe( res => {  
         this.onGetTodolist();
       })
-
       this.onFormInit();
     }
   }

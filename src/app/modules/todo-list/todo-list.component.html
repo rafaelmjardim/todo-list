@@ -15,10 +15,8 @@
                 <div class="todo_list_main_header_done_count">{{todoCheckCount}} de {{todoListCount}}</div>
             </div>
         </div>
-
-        <!-- *ngIf="todoListCount > 0; else empty" -->
-        <div></div>
-        <ul class="todo_list_main_list">
+        
+        <ul class="todo_list_main_list" *ngIf="todoListCount > 0; else empty">
             <li class="todo_list_main_list_item"  *ngFor="let todoItem of todoList">
                     <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem[1].checked" (change)="changeTodoCheckbox($event, todoItem[0], todoItem[1].txt)">
                     <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem[1].checked}">
