@@ -39,17 +39,17 @@ export class TodoListComponent implements OnInit {
   }
 
   onGetTodolist = () => {
-    
     this.todo_list_service.getTodoList().subscribe(res => {
+      
       if(res){
         this.todoList = Object.entries(res).map(key => {
           return key
         })
-  
+        
         this.todoListCount = this.todoList.length
-      }
-      
-      console.log(this.todoListCount)
+      }else {
+        this.todoListCount = 0;
+      }      
     })
   }
 
