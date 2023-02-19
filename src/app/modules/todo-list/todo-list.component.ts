@@ -16,7 +16,7 @@ export class TodoListComponent implements OnInit {
   inputTxt!: string;
 
   todoItemChecked: boolean = false;
-  todoCheckCount: number = 0;
+  todoCheckCount!: any;
   todoId!: string;
 
   requiredError: boolean = false;
@@ -29,7 +29,7 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.onGetTodolist();
     this.onFormInit();
-    
+    console.log('checked', this.todoCheckCount)
   }
 
   onFormInit = () => {
@@ -47,6 +47,14 @@ export class TodoListComponent implements OnInit {
         })
         
         this.todoListCount = this.todoList.length
+
+        //Faz a filtragem dos itens checados (true) e envia para a variavel todoCheckCount
+        const filterTodoListChecked = this.todoList.filter((f: any) => {
+          return f[1].checked === true;
+        })
+
+        this.todoCheckCount = filterTodoListChecked.length
+
       }else {
         this.todoListCount = 0;
       }      
