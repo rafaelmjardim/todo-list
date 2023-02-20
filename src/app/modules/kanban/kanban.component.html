@@ -1,1 +1,20 @@
-<p>kanban works!</p>
+<div class="kanban">
+    <div class="kanban_group" cdkDropListGroup>
+        <div class="kanban_group_column">
+            <div class="kanban_group_column_header">Tarefas</div>
+            <div class="kanban_group_column_body">
+                <ul class="kanban_group_column_body_list" cdkDropList [cdkDropListData]="todo" (cdkDropListDropped)="drop($event)">
+                    <li class="kanban_group_column_body_list_item" *ngFor="let item of todo" cdkDrag>{{ item }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="kanban_group_column">
+            <div class="kanban_group_column_header">Concluídas</div>
+            <div class="kanban_group_column_body">
+                <ul class="kanban_group_column_body_list" cdkDropList [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
+                    <li class="kanban_group_column_body_list_item" *ngFor="let item of done" cdkDrag>{{ item }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

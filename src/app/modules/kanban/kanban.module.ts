@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { KanbanRoutingModule } from './kanban-routing.module';
 import { KanbanComponent } from './kanban.component';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { KanbanComponent } from './kanban.component';
   ],
   imports: [
     CommonModule,
-    KanbanRoutingModule
+    KanbanRoutingModule,
+    DragDropModule
   ]
 })
 export class KanbanModule { }
