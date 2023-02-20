@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path:'',
     pathMatch: 'full',
+    redirectTo: 'todo'
   },
   {
     path:'todo',
