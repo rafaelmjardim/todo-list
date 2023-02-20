@@ -29,7 +29,6 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.onGetTodolist();
     this.onFormInit();
-    console.log('checked', this.todoCheckCount)
   }
 
   onFormInit = () => {
@@ -71,6 +70,7 @@ export class TodoListComponent implements OnInit {
       this.requiredError = false;
     }
 
+    console.log('id', this.todoId)
     if(this.todoId){
       //Update
       this.inputTxt = this.formTodo.controls['inputTxt'].value;
@@ -79,8 +79,10 @@ export class TodoListComponent implements OnInit {
         console.log('Editado com sucesso ID', this.todoId)
         this.onGetTodolist();
         this.onFormInit();
-
       })
+
+      //reseta o todoID após click
+      this.todoId = '';
       
     }else{
       //Post
