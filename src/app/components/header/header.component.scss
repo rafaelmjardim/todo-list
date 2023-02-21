@@ -8,8 +8,26 @@
         height: 10rem;
     }
     
-    &_img {
+    &_content {
         display: flex;
         align-items: center;
+        gap: 1.5rem;
+    
+        &_img {
+            display: flex;
+            align-items: center;
+            width: auto;
+            height: 3.6rem;
+        }
+
+        &_title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #4EA8DE;
+            
+            b{
+                color: #5E60CE;
+            }
+        }
     }
 }
