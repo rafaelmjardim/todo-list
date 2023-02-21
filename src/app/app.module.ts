@@ -9,12 +9,15 @@ import { TodoListComponent } from './modules/todo-list/todo-list.component';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { KanbanComponent } from './modules/kanban/kanban.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    KanbanComponent,
     TodoListComponent,
     NavbarComponent,
   ],
@@ -23,7 +26,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
