@@ -29,8 +29,19 @@
         <div class="kanban_group_column">
             <div class="kanban_group_column_header">Em andamento</div>
             <div class="kanban_group_column_body">
-                <ul class="kanban_group_column_body_list" cdkDropList [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
-                    <!-- <li class="kanban_group_column_body_list_item" cdkDrag></li> -->
+                <ul class="kanban_group_column_body_list" cdkDropList [cdkDropListData]="progress" (cdkDropListDropped)="drop($event)">
+                    <li class="kanban_group_column_body_list_item" cdkDrag *ngFor="let item of progress">
+                        <span>{{ item }}</span>
+                        <div  class="kanban_group_column_body_list_item_actions">
+                            <div class="kanban_group_column_body_list_item_actions_edit">
+                                <img src="assets/icons/edit.png" alt="Edit icon">
+                            </div>
+    
+                            <div class="kanban_group_column_body_list_item_actions_delete">
+                                <img src="assets/icons/trash.png" alt="Delete icon">
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
