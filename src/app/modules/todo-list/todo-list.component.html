@@ -1,38 +1,44 @@
 <div class="todo_list">
-    <form class="todo_list_inputs"[formGroup]="formTodo">
-        <input  class="todo_list_inputs_input" type="text" placeholder="Adicionar uma nova tarefa" [ngClass]="{'requiredError': requiredError}" formControlName='inputTxt'>
-        <button (click)="submitTodoList()">{{!todoId ? 'Criar' : 'Editar'}}</button>
-    </form>
+    <div class="todo_list_header">
+        <app-header></app-header>
+    </div>
 
-    <div class="todo_list_main">
-        <div class="todo_list_main_header">
-            <div class="todo_list_main_header_tasks">
-                <span class="todo_list_main_header_tasks_txt">Tarefas criadas</span>
-                <div class="todo_list_main_header_tasks_count">{{todoListCount}}</div>
+    <div class="todo_list_content">
+        <form class="todo_list_content_inputs"[formGroup]="formTodo">
+            <input  class="todo_list_content_inputs_input" type="text" placeholder="Adicionar uma nova tarefa" [ngClass]="{'requiredError': requiredError}" formControlName='inputTxt'>
+            <button (click)="submitTodoList()">{{!todoId ? 'Criar' : 'Editar'}}</button>
+        </form>
+    
+        <div class="todo_list_content_main">
+            <div class="todo_list_content_main_header">
+                <div class="todo_list_content_main_header_tasks">
+                    <span class="todo_list_content_main_header_tasks_txt">Tarefas criadas</span>
+                    <div class="todo_list_content_main_header_tasks_count">{{todoListCount}}</div>
+                </div>
+                <div class="todo_list_content_main_header_done">
+                    <span class="todo_list_content_main_header_done_txt">Concluídas</span>
+                    <div class="todo_list_content_main_header_done_count">{{todoCheckCount}} de {{todoListCount}}</div>
+                </div>
             </div>
-            <div class="todo_list_main_header_done">
-                <span class="todo_list_main_header_done_txt">Concluídas</span>
-                <div class="todo_list_main_header_done_count">{{todoCheckCount}} de {{todoListCount}}</div>
-            </div>
+    
+            <ul class="todo_list_content_main_list" *ngIf="todoListCount > 0; else empty">
+                <li class="todo_list_content_main_list_item"  *ngFor="let todoItem of todoList">
+                        <input class="todo_list_content_main_list_item_checkbox" type="checkbox" [checked]="todoItem[1].checked" (change)="changeTodoCheckbox($event, todoItem[0], todoItem[1].txt)">
+                        <span class="todo_list_content_main_list_item_txt"  [ngClass]="{'checked': todoItem[1].checked}">
+                            {{todoItem[1].txt}}
+                        </span>
+                        <div class="todo_list_content_main_list_item_actions">
+                            <div class="todo_list_content_main_list_item_actions_edit" (click)="putTodoList(todoItem[0], todoItem[1].txt)">
+                                <img src="assets/icons/edit.png" alt="Edit icon">
+                            </div>
+    
+                            <div class="todo_list_content_main_list_item_actions_delete" (click)="deleteTodoList(todoItem[0])">
+                                <img src="assets/icons/trash.png" alt="Delete icon">
+                            </div>
+                        </div>
+                </li>
+            </ul>
         </div>
-        
-        <ul class="todo_list_main_list" *ngIf="todoListCount > 0; else empty">
-            <li class="todo_list_main_list_item"  *ngFor="let todoItem of todoList">
-                    <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem[1].checked" (change)="changeTodoCheckbox($event, todoItem[0], todoItem[1].txt)">
-                    <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem[1].checked}">
-                        {{todoItem[1].txt}}
-                    </span>
-                    <div class="todo_list_main_list_item_actions">
-                        <div class="todo_list_main_list_item_actions_edit" (click)="putTodoList(todoItem[0], todoItem[1].txt)">
-                            <img src="assets/icons/edit.png" alt="Edit icon">
-                        </div>
-                    
-                        <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(todoItem[0])">
-                            <img src="assets/icons/trash.png" alt="Delete icon">
-                        </div>
-                    </div>
-            </li>
-        </ul>
     </div>
 </div>
 

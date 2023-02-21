@@ -8,6 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TodoListComponent } from './modules/todo-list/todo-list.component';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AppComponent,
     HeaderComponent,
     TodoListComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
