@@ -7,9 +7,9 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./kanban.component.scss']
 })
 export class KanbanComponent {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  todo = ['Primeira tarefa', 'Comprar pão', 'Efetuar testes no sistema', 'Adicionar novos icones'];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  done = ['Alterar tema', 'Efetuar testes', 'Fazer compras', 'Comprar frutas', 'Verificar códigos'];
 
   progress: string[] = ['']
 
