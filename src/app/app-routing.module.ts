@@ -6,7 +6,7 @@ import { TodoListComponent } from './modules/todo-list/todo-list.component';
 const routes: Routes = [
   {
     path:'',
-    pathMatch: 'full',
+    pathMatch:'full',
     redirectTo: 'todo'
   },
   {
@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path:'kanban',
     loadChildren: () => import('./modules/kanban/kanban.module').then(m => m.KanbanModule)
+  },
+  {
+    path:'login',
+    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   }
 ];
 

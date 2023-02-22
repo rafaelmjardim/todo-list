@@ -36,6 +36,12 @@
         img {
             width: auto;
             height: 3.5rem;
+            transition: .2s;
+            cursor: pointer;
+
+            &:hover {
+                scale: 1.1;
+            }
         }
     }
 }
