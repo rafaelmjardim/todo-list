@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
@@ -6,12 +6,20 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.scss']
 })
-export class KanbanComponent {
+export class KanbanComponent implements OnInit{
   todo = ['Primeira tarefa', 'Comprar pão', 'Efetuar testes no sistema', 'Adicionar novos icones'];
 
   done = ['Alterar tema', 'Efetuar testes', 'Fazer compras', 'Comprar frutas', 'Verificar códigos'];
 
   progress: string[] = ['']
+
+  constructor (
+    // private dialog:
+  ) { }
+
+  ngOnInit(): void {
+    
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -24,5 +32,9 @@ export class KanbanComponent {
         event.currentIndex,
       );
     }
+  }
+
+  openDialog = () => {
+
   }
 }
