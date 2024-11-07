@@ -81,6 +81,7 @@ export class TodoListComponent implements OnInit {
   deleteTodoList = (index: number) => {  
     this.todoList.splice(index, 1)
     this.updateTodoCheckCount();
+    this.todoListService.setTodoListStorege(this.todoList);
   }
 
   editTodoList = (index: number, txt: string) => {
