@@ -1,6 +1,6 @@
 <div class="todo_list">
-    <form class="todo_list_inputs">
-        <input  class="todo_list_inputs_input" type="text" placeholder="Adicionar uma nova tarefa" [ngClass]="{'requiredError': showError}" (input)="changeInputValue($event)">
+    <form class="todo_list_inputs" [formGroup]="formTodo">
+        <input  class="todo_list_inputs_input" type="text" placeholder="Adicionar uma nova tarefa" [ngClass]="{'requiredError': showError}" (input)="changeInputValue($event)" formControlName="inputTxt">
         <button (click)="submitTodoList()">{{editIndex == null? 'Criar' : 'Editar'}}</button>
     </form>
 

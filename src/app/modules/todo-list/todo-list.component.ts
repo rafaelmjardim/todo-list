@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
+import { FormGroup, FormControl } from "@angular/forms";
 import { Todo } from './todo';
 
 @Component({
@@ -9,6 +10,7 @@ import { Todo } from './todo';
 })
 export class TodoListComponent implements OnInit {
   todoList: Todo[] = [];
+  formTodo!: FormGroup;
 
   inputTxt: string = '';
 
@@ -23,7 +25,16 @@ export class TodoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.onFormInit();
     this.onGetTodolist();
+  }
+
+  onFormInit = () => {
+    this.formTodo = new FormGroup({
+      inputTxt: new FormControl([''])
+    })
+    
+    this.inputTxt = '';
   }
 
   onGetTodolist = () => {
@@ -49,7 +60,7 @@ export class TodoListComponent implements OnInit {
       this.todoList[this.editIndex] = {...item};     
       this.editIndex = null;    
       this.todoListService.setTodoListStorege(this.todoList)
-      this.inputTxt = ''
+      this.onFormInit()
       return
     } 
     
@@ -57,7 +68,7 @@ export class TodoListComponent implements OnInit {
     if (!this.editIndex && this.inputTxt) {
       this.todoList = [...this.todoList, item];
       this.todoListService.setTodoListStorege(this.todoList);
-      this.inputTxt = ''
+      this.onFormInit()
     }
   }
 
@@ -66,8 +77,12 @@ export class TodoListComponent implements OnInit {
     this.todoListService.setTodoListStorege(this.todoList);
   }
 
-  editTodoList = (index: number) => {
-    this.editIndex = index;    
+  editTodoList = (index: number, txt: string) => {
+    this.editIndex = index;
+    
+    //Setar o valor do testo no input
+    this.formTodo.controls['inputTxt'].setValue(txt);
+    this.inputTxt = txt;
   }
 
   changeTodoCheckbox = (event: any, index: number, currentTxt: string) => {
