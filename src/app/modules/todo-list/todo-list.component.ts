@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
-import { FormGroup , FormBuilder, FormControl } from "@angular/forms";
-import { UtilsService } from 'src/app/services/utils/utils.service';
 import { Todo } from './todo';
 
 @Component({
@@ -68,11 +66,8 @@ export class TodoListComponent implements OnInit {
     this.todoListService.setTodoListStorege(this.todoList);
   }
 
-  editTodoList = (index: number, txt?: string) => {
-    this.editIndex = index;
-    
-    //Setar o valor do testo no input
-    // this.formTodo.controls['inputTxt'].setValue(txt);
+  editTodoList = (index: number) => {
+    this.editIndex = index;    
   }
 
   changeTodoCheckbox = (event: any, index: number, currentTxt: string) => {
