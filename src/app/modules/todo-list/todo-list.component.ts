@@ -14,7 +14,6 @@ export class TodoListComponent implements OnInit {
 
   inputTxt: string = '';
 
-  todoItemChecked: boolean = false;
   todoCheckCount = 0;
   editIndex: number | null = null;
 
@@ -86,6 +85,15 @@ export class TodoListComponent implements OnInit {
   }
 
   changeTodoCheckbox = (event: any, index: number, currentTxt: string) => {
-    this.todoItemChecked = event.target.checked;
+    const eventChecked = event.target.checked;
+    
+    this.todoList = this.todoList.map((item, i) => {
+      if (i === index) {
+        return {...item, checked: eventChecked}
+      }
+      return item
+    })
+
+    this.todoListService.setTodoListStorege(this.todoList);
   }
 }

@@ -119,13 +119,26 @@
                 &_actions {
                     display: flex;
                     align-items: center;
-
+                    gap: .4rem;
+                    
                     &_delete, &_edit {
                         cursor: pointer;
                         transition: 0.2s;
     
                         &:hover{
                             scale: 1.1;
+                        }
+                    }
+
+                    &_edit {
+                        img {
+                            width: 16px;
+                        }
+                    }
+
+                    &_delete {
+                        img {
+                            width: 25px;
                         }
                     }
                 }
@@ -171,3 +184,44 @@
     font-style: italic;
     text-decoration: line-through;
 }
+
+.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .custom-checkbox input {
+    display: none; /* Esconde o checkbox padrão */
+  }
+  
+  .custom-checkbox span {
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 2px solid gray; /* Borda cinza */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Borda levemente arredondada */
+    background-color: transparent; /* Fundo transparente */
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  
+  .custom-checkbox input:checked + span {
+    background-color: #1E6F9F; /* Fundo cinza quando marcado */
+    border-color: #1E6F9F;
+  }
+  
+  .custom-checkbox span::after {
+    content: "";
+    display: none;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin: auto;
+  }
+  
+  .custom-checkbox input:checked + span::after {
+    display: block;
+  }

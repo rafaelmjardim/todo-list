@@ -18,19 +18,24 @@
         
         <ul class="todo_list_main_list" *ngIf="todoList.length; else empty">
             <li class="todo_list_main_list_item"  *ngFor="let todoItem of todoList; let i = index">
-                    <input class="todo_list_main_list_item_checkbox" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, i, todoItem.txt)">
-                    <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem.checked}">
-                        {{todoItem.txt}}
-                    </span>
-                    <div class="todo_list_main_list_item_actions">
-                        <div class="todo_list_main_list_item_actions_edit" (click)="editTodoList(i, todoItem.txt)">
-                            <img src="assets/icons/edit.png" alt="Edit icon">
-                        </div>
-                    
-                        <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(i)">
-                            <img src="assets/icons/trash.png" alt="Delete icon">
-                        </div>
+                <label class="custom-checkbox">
+                    <input class="" type="checkbox" [checked]="todoItem.checked" (change)="changeTodoCheckbox($event, i, todoItem.txt)">
+                    <span></span>
+                </label>
+
+                <span class="todo_list_main_list_item_txt"  [ngClass]="{'checked': todoItem.checked}">
+                    {{todoItem.txt}}
+                </span>
+                
+                <div class="todo_list_main_list_item_actions">
+                    <div class="todo_list_main_list_item_actions_edit" (click)="editTodoList(i, todoItem.txt)">
+                        <img src="assets/icons/edit.png" alt="Edit icon">
                     </div>
+                
+                    <div class="todo_list_main_list_item_actions_delete" (click)="deleteTodoList(i)">
+                        <img src="assets/icons/trash.png" alt="Delete icon">
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
