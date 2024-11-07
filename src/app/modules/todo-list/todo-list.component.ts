@@ -33,11 +33,18 @@ export class TodoListComponent implements OnInit {
       inputTxt: new FormControl([''])
     })
     
+    this.updateTodoCheckCount();
     this.inputTxt = '';
   }
-
+  
   onGetTodolist = () => {
     this.todoList = this.todoListService.getTodoListStorege();
+    this.updateTodoCheckCount();
+  }
+  
+  updateTodoCheckCount = () => {
+    const todoCheckeds = this.todoList.filter(item => item.checked === true);
+    this.todoCheckCount = todoCheckeds.length;
   }
 
   changeInputValue = (event: Event) => {
@@ -73,7 +80,7 @@ export class TodoListComponent implements OnInit {
 
   deleteTodoList = (index: number) => {  
     this.todoList.splice(index, 1)
-    this.todoListService.setTodoListStorege(this.todoList);
+    this.updateTodoCheckCount();
   }
 
   editTodoList = (index: number, txt: string) => {
@@ -86,7 +93,7 @@ export class TodoListComponent implements OnInit {
 
   changeTodoCheckbox = (event: any, index: number, currentTxt: string) => {
     const eventChecked = event.target.checked;
-    
+
     this.todoList = this.todoList.map((item, i) => {
       if (i === index) {
         return {...item, checked: eventChecked}
@@ -95,5 +102,6 @@ export class TodoListComponent implements OnInit {
     })
 
     this.todoListService.setTodoListStorege(this.todoList);
+    this.updateTodoCheckCount();
   }
 }
