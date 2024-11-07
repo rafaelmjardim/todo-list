@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Todo } from './todo';
 
 @Injectable({
   providedIn: 'root'
@@ -9,29 +10,40 @@ export class TodoListService {
 
   API_KEY = environment.API_KEY;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  getTodoList = () => {
-    return this.http.get(`${this.API_KEY}/todo/.json`)
+  setTodoListStorege = (todo: Todo[]) => {
+    const todoStorege = JSON.stringify(todo);
+    localStorage.setItem('todoList', todoStorege);
   }
 
-  postTodoList = (txtPost: string) => {
-    return this.http.post(`${this.API_KEY}/todo.json`, {
-      txt: txtPost,
-      checked: false
-    })
+  getTodoListStorege = () => {
+    const todoStorge = localStorage.getItem('todoList');
+
+    return todoStorge ? JSON.parse(todoStorge) : null;
   }
 
-  deleteTodoList = (id: string) => {
-    return this.http.delete(`${this.API_KEY}/todo/${id}.json`, {
+  // getTodoList = () => {
+  //   return this.http.get(`${this.API_KEY}/todo/.json`)
+  // }
 
-    })
-  }
+  // postTodoList = (txtPost: string) => {
+  //   return this.http.post(`${this.API_KEY}/todo.json`, {
+  //     txt: txtPost,
+  //     checked: false
+  //   })
+  // }
 
-  putTodoList = (id: string, txtPost?: string, checkedChange?:boolean) => {
-    return this.http.put(`${this.API_KEY}/todo/${id}.json`, {
-      txt: txtPost,
-      checked: checkedChange
-    })
-  }
+  // deleteTodoList = (id: string) => {
+  //   return this.http.delete(`${this.API_KEY}/todo/${id}.json`, {
+
+  //   })
+  // }
+
+  // putTodoList = (id: string, txtPost?: string, checkedChange?:boolean) => {
+  //   return this.http.put(`${this.API_KEY}/todo/${id}.json`, {
+  //     txt: txtPost,
+  //     checked: checkedChange
+  //   })
+  // }
 }

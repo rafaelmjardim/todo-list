@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from './todo-list.service';
-import { FormGroup , FormBuilder } from "@angular/forms";
+import { FormGroup , FormBuilder, FormControl } from "@angular/forms";
+import { UtilsService } from 'src/app/services/utils/utils.service';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,111 +10,72 @@ import { FormGroup , FormBuilder } from "@angular/forms";
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
+  todoList: Todo[] = [];
 
-  todoList!: any;
-  todoListCount: number = 0;
-
-  formTodo!: FormGroup;
-  inputTxt!: string;
+  inputTxt: string = '';
 
   todoItemChecked: boolean = false;
-  todoCheckCount!: any;
-  todoId!: string;
+  todoCheckCount = 0;
+  editIndex: number | null = null;
 
-  requiredError: boolean = false;
+  showError: boolean = false;
 
   constructor(
-    private todo_list_service: TodoListService,
-    private form_builder: FormBuilder
+    private todoListService: TodoListService
   ) { }
 
   ngOnInit(): void {
     this.onGetTodolist();
-    this.onFormInit();
-  }
-
-  onFormInit = () => {
-    this.formTodo = this.form_builder.group({
-      inputTxt: ['']
-    })
   }
 
   onGetTodolist = () => {
-    this.todo_list_service.getTodoList().subscribe(res => {
-      
-      if(res){
-        this.todoList = Object.entries(res).map(key => {
-          return key
-        })
-        
-        this.todoListCount = this.todoList.length
-
-        //Faz a filtragem dos itens checados (true) e envia para a variavel todoCheckCount
-        const filterTodoListChecked = this.todoList.filter((f: any) => {
-          return f[1].checked === true;
-        })
-
-        this.todoCheckCount = filterTodoListChecked.length
-
-      }else {
-        this.todoListCount = 0;
-      }      
-    })
+    this.todoList = this.todoListService.getTodoListStorege();
   }
 
-  submitTodoList = () => {
-    
-    if(!this.formTodo.controls['inputTxt'].value.length){
-      this.requiredError = true;
-      console.log('error status', this.requiredError)
+  changeInputValue = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+
+    this.inputTxt = target.value;
+  }
+
+  submitTodoList = () => {      
+    this.showError = !this.inputTxt.length ? true : false; 
+
+    const item: Todo = {
+      txt: this.inputTxt,
+      checked: false,
+    }
+
+    //PUT
+    if (this.editIndex !== null) {
+      this.todoList[this.editIndex] = {...item};     
+      this.editIndex = null;    
+      this.todoListService.setTodoListStorege(this.todoList)
+      this.inputTxt = ''
       return
-    }else {
-      this.requiredError = false;
-    }
-
-    console.log('id', this.todoId)
-    if(this.todoId){
-      //Update
-      this.inputTxt = this.formTodo.controls['inputTxt'].value;
-      
-      this.todo_list_service.putTodoList(this.todoId, this.inputTxt, this.todoItemChecked).subscribe(res =>{
-        console.log('Editado com sucesso ID', this.todoId)
-        this.onGetTodolist();
-        this.onFormInit();
-      })
-
-      //reseta o todoID após click
-      this.todoId = '';
-      
-    }else{
-      //Post
-      this.inputTxt = this.formTodo.controls['inputTxt'].value;
-  
-      this.todo_list_service.postTodoList(this.inputTxt).subscribe( res => {  
-        this.onGetTodolist();
-      })
-      this.onFormInit();
+    } 
+    
+    //POST
+    if (!this.editIndex && this.inputTxt) {
+      this.todoList = [...this.todoList, item];
+      this.todoListService.setTodoListStorege(this.todoList);
+      this.inputTxt = ''
     }
   }
 
-  deleteTodoList = (id: string) => {
-    this.todo_list_service.deleteTodoList(id).subscribe(res => {
-      this.onGetTodolist();
-    })
+  deleteTodoList = (index: number) => {  
+    this.todoList.splice(index, 1)
+    this.todoListService.setTodoListStorege(this.todoList);
   }
 
-  putTodoList = (id:string, txt?: string) => {
-    this.todoId = id;
+  editTodoList = (index: number, txt?: string) => {
+    this.editIndex = index;
     
     //Setar o valor do testo no input
-    this.formTodo.controls['inputTxt'].setValue(txt);
+    // this.formTodo.controls['inputTxt'].setValue(txt);
   }
 
-  changeTodoCheckbox = (event: any, id: string, currentTxt: string) => {
+  changeTodoCheckbox = (event: any, index: number, currentTxt: string) => {
     this.todoItemChecked = event.target.checked;
-
-    this.todo_list_service.putTodoList(id, currentTxt, this.todoItemChecked).subscribe(res => {
-      this.onGetTodolist();
-    })
   }
 }
