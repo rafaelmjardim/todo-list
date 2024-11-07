@@ -20,7 +20,7 @@ export class TodoListService {
   getTodoListStorege = () => {
     const todoStorge = localStorage.getItem('todoList');
 
-    return todoStorge ? JSON.parse(todoStorge) : null;
+    return todoStorge ? JSON.parse(todoStorge) : [];
   }
 
   // getTodoList = () => {
